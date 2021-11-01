@@ -7,8 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Getter
-@Setter
+@Getter @Setter
 public class Member {
 
     @Id
