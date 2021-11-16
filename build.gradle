@@ -25,7 +25,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-//    compileOnly 'com.h2database:h2'
     implementation 'io.r2dbc:r2dbc-h2'
 
     compileOnly 'org.projectlombok:lombok'
