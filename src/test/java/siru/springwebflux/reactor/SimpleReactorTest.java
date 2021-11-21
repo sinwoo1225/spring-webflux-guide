@@ -1,6 +1,7 @@
 package siru.springwebflux.reactor;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -90,5 +91,38 @@ public class SimpleReactorTest {
                 }).subscribe(v -> {
                     System.out.println("subscribe: " + v);
                 });
+    }
+
+    @Test
+    public void webClient_test() throws Exception {
+        WebClient webClient = WebClient.create();
+        Mono<String> resultMono = webClient.get()
+                .uri("http://localhost:8080/test")
+                .retrieve()
+                .bodyToMono(String.class);
+
+        String result = resultMono.block();
+
+        assertThat(result).isEqualTo("test is tasty");
+    }
+
+    @Test
+    public void webClient_toFlux_test() throws Exception {
+        WebClient webClient = WebClient.create();
+        webClient.get()
+                .uri("http://localhost:8080/users")
+                .retrieve()
+                .bodyToMono(List.class)
+                .log()
+                        .flatMapMany(Flux::fromIterable)
+                                .flatMap(userIndex ->
+                                    webClient.get()
+                                            .uri("http://localhost:8080/users/{userIndex}", userIndex)
+                                            .retrieve()
+                                            .bodyToMono(String.class)
+                                )
+                                        .subscribe(System.out::println);
+        Thread.sleep(10000);
+        System.out.println("데이터 전송완료");
     }
 }
