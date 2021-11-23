@@ -170,6 +170,11 @@ public class SimpleReactorTest {
                 });
     }
 
+    /**
+     * webclient 테스트
+     * - 테스트전 반드시 서버를 띄워놓을것
+     * - 실제 테스트 코드 작성시에는 WebTestClient 이용
+     */
     @Test
     public void webClient_test() throws Exception {
         WebClient webClient = WebClient.create();
