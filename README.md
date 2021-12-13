@@ -28,3 +28,10 @@ public void 간단한_리액터생성_구독() throws Exception {
 
 ---
 # R2DBC
+
+---
+# Jooq
+jpa에서 동적쿼리를 작성하기위해 querydsl을 사용한다. sql을 코드레벨에서 작성하기에는
+r2dbc에서는 jpa를 사용할 수 없어 querydsl을 사용할 수 있는지 알아봐야한다. 일단 현재 
+내가 이해하는바로는 querydsl은 jpql을 코드레벨의 쿼리로 변환할 수 있는 라이브러리인데
+이를 r2dbc에서도 쓸 수 있는지 추가적으로 jooq라는 라이브러리에 대해서 조사후 정리해야겠다.
